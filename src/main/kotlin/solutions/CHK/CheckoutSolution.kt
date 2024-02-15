@@ -109,5 +109,3 @@ object CheckoutSolution {
             0 to amount
     }
 }
-
-
