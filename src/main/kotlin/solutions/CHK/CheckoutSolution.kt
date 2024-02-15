@@ -19,12 +19,12 @@ object CheckoutSolution {
                     var amountOfA = value
 
                     if(amountOfA / 5 > 0) {
-                        finalPrice =+ (amountOfA / 5) * 200
+                        finalPrice += (amountOfA / 5) * 200
                         amountOfA -= (amountOfA / 5) * 5
                     }
 
                     if(amountOfA / 3 > 0) {
-                        finalPrice =+ (amountOfA / 3) * 130
+                        finalPrice += (amountOfA / 3) * 130
                         amountOfA -= (amountOfA / 3) * 3
                     }
 

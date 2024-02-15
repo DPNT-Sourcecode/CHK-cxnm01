@@ -59,4 +59,19 @@ class CheckoutSolutionTest {
     fun `Buy four A`() {
         Assertions.assertEquals(180, CheckoutSolution.checkout("AAAA"))
     }
+
+    @Test
+    fun `Buy eight A`() {
+        Assertions.assertEquals(330, CheckoutSolution.checkout("AAAAAAAA"))
+    }
 }
+
+/*
+Result is: FAILED
+Some requests have failed (4/40). Here are some of them:
+ - {"method":"checkout","params":["AAAAAAAA"],"id":"CHK_R2_020"}, expected: 330, got: 130
+ - {"method":"checkout","params":["AAAAAAAAA"],"id":"CHK_R2_021"}, expected: 380, got: 180
+ - {"method":"checkout","params":["AAAAAEEBAAABB"],"id":"CHK_R2_040"}, expected: 455, got: 255
+You have received a penalty of: 10 min
+The round will restart now
+*/
