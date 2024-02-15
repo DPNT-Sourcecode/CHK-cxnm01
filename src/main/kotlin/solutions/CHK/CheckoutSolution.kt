@@ -31,7 +31,7 @@ object CheckoutSolution {
         remaining = subtractAmountForPackedSKU(mapSkuToQuantity, 'T', remaining)
         remaining = subtractAmountForPackedSKU(mapSkuToQuantity, 'Y', remaining)
         subtractAmountForPackedSKU(mapSkuToQuantity, 'X', remaining)
-        
+
         for((key, value) in mapSkuToQuantity) {
             when (key) {
                 'A' -> {
@@ -132,7 +132,7 @@ object CheckoutSolution {
         val amount = shoppingCart[char] ?: 0;
         if(amount > 0) {
             val valueToSubtract = min(amount, amountPacked)
-            shoppingCart['X'] = amount - valueToSubtract
+            shoppingCart[char] = amount - valueToSubtract
             return amountPacked - valueToSubtract
         }
         return amountPacked
