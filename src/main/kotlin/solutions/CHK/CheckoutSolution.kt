@@ -41,6 +41,11 @@ object CheckoutSolution {
                 'C' -> finalPrice += 20 * value
                 'D' -> finalPrice += 15 * value
                 'E' -> finalPrice += 40 * value
+                'F' -> {
+                    if(value / 3 > 0) {
+                        finalPrice +=
+                    }
+                }
                 else -> {
                     finalPrice = -1
                     break
