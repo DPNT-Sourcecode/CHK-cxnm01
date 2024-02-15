@@ -114,10 +114,11 @@ object CheckoutSolution {
         return finalPrice
     }
 
-    fun packsOfNElements(amount: Int, packSize: Int, packPrice: Int): Pair<Int, Int> {
+    private fun packsOfNElements(amount: Int, packSize: Int, packPrice: Int): Pair<Int, Int> {
         return if(amount / packSize > 0)
-            (amount / packSize) * packPrice to (amount / packSize) * packSize
+            (amount / packSize) * packPrice to amount - (amount / packSize) * packSize
         else
             0 to amount
     }
 }
+
