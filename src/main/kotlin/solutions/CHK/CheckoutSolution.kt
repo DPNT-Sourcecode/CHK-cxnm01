@@ -16,8 +16,8 @@ object CheckoutSolution {
         for((key, value) in mapSkuToQuantity) {
             when (key) {
                 'A' -> {
-                    val (pricePack4, remainingPack5) = packsOfNElements(value, 5, 200)
-                    finalPrice += pricePack4
+                    val (pricePack5, remainingPack5) = packsOfNElements(value, 5, 200)
+                    finalPrice += pricePack5
 
                     val (pricePack3, remainingPack3) = packsOfNElements(remainingPack5, 3, 130)
                     finalPrice += pricePack3
@@ -41,19 +41,13 @@ object CheckoutSolution {
                 }
                 'G' -> finalPrice += value * 20
                 'H' -> {
-                    var amountOfH = value
+                        val (pricePack10, remainingPack10) = packsOfNElements(value, 10, 80)
+                        finalPrice += pricePack10
 
-                    if(amountOfH / 10 > 0) {
-                        finalPrice += (amountOfH / 10) * 80
-                        amountOfH -= (amountOfH / 10) * 10
-                    }
+                        val (pricePack5, remainingPack5) = packsOfNElements(remainingPack10, 5, 45)
+                        finalPrice += pricePack5
 
-                    if(amountOfH / 5 > 0) {
-                        finalPrice += (amountOfH / 5) * 45
-                        amountOfH -= (amountOfH / 5) * 5
-                    }
-
-                    finalPrice += amountOfH * 10
+                        finalPrice += remainingPack5 * 10
                 }
                 'I' -> finalPrice += value * 35
                 'J' -> finalPrice += value * 60
@@ -86,19 +80,14 @@ object CheckoutSolution {
                     finalPrice += 40 * (value - amountOfTripleUs)
                 }
                 'V' -> {
-                    var amountOfV = value
 
-                    if(amountOfV / 3 > 0) {
-                        finalPrice += (amountOfV / 3) * 130
-                        amountOfV -= (amountOfV / 3) * 3
-                    }
+                    val (pricePack3, remainingPack3) = packsOfNElements(value, 3, 130)
+                    finalPrice += pricePack3
 
-                    if(amountOfV / 2 > 0) {
-                        finalPrice += (amountOfV / 2) * 90
-                        amountOfV -= (amountOfV / 2) * 2
-                    }
+                    val (pricePack2, remainingPack2) = packsOfNElements(remainingPack3, 3, 90)
+                    finalPrice += pricePack2
 
-                    finalPrice += amountOfV * 50
+                    finalPrice += remainingPack2 * 50
                 }
                 'W' -> finalPrice += value * 20
                 'X' -> finalPrice += value * 90
@@ -121,4 +110,5 @@ object CheckoutSolution {
             0 to amount
     }
 }
+
 

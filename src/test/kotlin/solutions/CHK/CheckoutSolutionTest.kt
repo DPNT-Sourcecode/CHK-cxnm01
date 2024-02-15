@@ -26,11 +26,6 @@ class CheckoutSolutionTest {
     }
 
     @Test
-    fun `Add an invalid SKU`() {
-        Assertions.assertEquals(-1, CheckoutSolution.checkout("X"))
-    }
-
-    @Test
     fun `Buy two Es`() {
         Assertions.assertEquals(80, CheckoutSolution.checkout("EE"))
     }
