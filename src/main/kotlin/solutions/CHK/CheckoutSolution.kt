@@ -16,7 +16,14 @@ object CheckoutSolution {
         for((key, value) in mapSkuToQuantity) {
             when (key) {
                 'A' -> finalPrice += (value / 3) * 130 + (value % 3) * 50
-                'B' -> finalPrice += (value / 2) * 45 + (value % 2) * 30
+                'B' -> {
+                    val amountOfE = mapSkuToQuantity['E']
+                    if(amountOfE != null && amountOfE / 2 >= value)
+                        finalPrice *= value * 30
+                    else
+                        finalPrice += (value / 2) * 45 + (value % 2) * 30
+
+                }
                 'C' -> finalPrice += 20 * value
                 'D' -> finalPrice += 15 * value
                 'E' -> {
@@ -31,26 +38,6 @@ object CheckoutSolution {
                     break
                 }
             }
-
-            /*if (key < 'A' || key > 'E') {
-                finalPrice = -1
-                break
-            }
-            if(key == 'A') {
-                finalPrice += (value / 3) * 130 + (value % 3) * 50
-            }
-            if(key == 'B') {
-                finalPrice += (value / 2) * 45 + (value % 2) * 30
-            }
-            if(key == 'C') {
-                finalPrice += 20 * value
-            }
-            if(key == 'D') {
-                finalPrice += 15 * value
-            }
-            if(key == 'E') {
-
-            }*/
         }
 
         return finalPrice
