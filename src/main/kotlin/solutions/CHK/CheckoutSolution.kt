@@ -19,7 +19,13 @@ object CheckoutSolution {
                 'B' -> finalPrice += (value / 2) * 45 + (value % 2) * 30
                 'C' -> finalPrice += 20 * value
                 'D' -> finalPrice += 15 * value
-//                'E' -> finalPrice += (value / 3) * 130 + (value % 3) * 50
+                'E' -> {
+                    finalPrice += 40 * value
+                    val amountOfB = mapSkuToQuantity['B']
+                    if(amountOfB != null) {
+                        finalPrice -= 30 * (value / 2)
+                    }
+                }
                 else -> {
                     finalPrice = -1
                     break
