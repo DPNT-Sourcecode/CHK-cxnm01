@@ -76,15 +76,14 @@ object CheckoutSolution {
                 'S' -> finalPrice += value * 30
                 'T' -> finalPrice += value * 20
                 'U' -> {
-                    val amountOfTripleUs = value / 3
+                    val amountOfTripleUs = value / 4
                     finalPrice += 40 * (value - amountOfTripleUs)
                 }
                 'V' -> {
-
                     val (pricePack3, remainingPack3) = packsOfNElements(value, 3, 130)
                     finalPrice += pricePack3
 
-                    val (pricePack2, remainingPack2) = packsOfNElements(remainingPack3, 3, 90)
+                    val (pricePack2, remainingPack2) = packsOfNElements(remainingPack3, 2, 90)
                     finalPrice += pricePack2
 
                     finalPrice += remainingPack2 * 50

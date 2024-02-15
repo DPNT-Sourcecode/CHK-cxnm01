@@ -89,4 +89,27 @@ class CheckoutSolutionTest {
     fun `Buy seven Fs`() {
         Assertions.assertEquals(50, CheckoutSolution.checkout("FFFFFFF"))
     }
+
+    @Test
+    fun `Buy tree Us`() {
+        Assertions.assertEquals(120, CheckoutSolution.checkout("UUU"))
+    }
+
+    @Test
+    fun `Buy two Vs`() {
+        Assertions.assertEquals(90, CheckoutSolution.checkout("VV"))
+    }
+
+    @Test
+    fun `Buy five Vs`() {
+        Assertions.assertEquals(220, CheckoutSolution.checkout("VVVVV"))
+    }
 }
+
+/*Result is: FAILED
+Some requests have failed (7/141). Here are some of them:
+ - {"method":"checkout","params":["UUU"],"id":"CHK_R4_054"}, expected: 120, got: 80
+ - {"method":"checkout","params":["VV"],"id":"CHK_R4_096"}, expected: 90, got: 100
+ - {"method":"checkout","params":["VVVVV"],"id":"CHK_R4_099"}, expected: 220, got: 230
+You have received a penalty of: 10 min
+The round will restart now*/
