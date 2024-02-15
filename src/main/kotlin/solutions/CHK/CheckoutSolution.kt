@@ -1,5 +1,7 @@
 package solutions.CHK
 
+import kotlin.math.min
+
 object CheckoutSolution {
     fun checkout(skus: String): Int {
         val mapSkuToQuantity: MutableMap<Char, Int> = mutableMapOf()
@@ -13,6 +15,25 @@ object CheckoutSolution {
         }
 
         var finalPrice = 0;
+
+        val amountOfS = mapSkuToQuantity['S'] ?: 0
+        val amountOfT = mapSkuToQuantity['T'] ?: 0
+        val amountOfX = mapSkuToQuantity['X'] ?: 0
+        val amountOfY = mapSkuToQuantity['Y'] ?: 0
+        val amountOfZ = mapSkuToQuantity['Z'] ?: 0
+
+        val totalAmountOfMixedPackable = amountOfS + amountOfT + amountOfX + amountOfY + amountOfZ
+        val (price, remaining) = packsOfNElements(totalAmountOfMixedPackable, 3,  45)
+        finalPrice += price
+
+        var packed = totalAmountOfMixedPackable - remaining;
+
+        if(amountOfX > 0) {
+            val valueToSubtract = min(amountOfX, packed)
+            mapSkuToQuantity['X'] = amountOfX - valueToSubtract
+            packed -= valueToSubtract
+        }
+
         for((key, value) in mapSkuToQuantity) {
             when (key) {
                 'A' -> {
