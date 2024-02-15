@@ -26,13 +26,11 @@ object CheckoutSolution {
         val (price, remaining) = packsOfNElements(totalAmountOfMixedPackable, 3,  45)
         finalPrice += price
 
-        var packed = totalAmountOfMixedPackable - remaining;
-
-        if(amountOfX > 0) {
-            val valueToSubtract = min(amountOfX, packed)
-            mapSkuToQuantity['X'] = amountOfX - valueToSubtract
-            packed -= valueToSubtract
-        }
+        subtractAmountForPackedSKU(mapSkuToQuantity, 'Z',
+            subtractAmountForPackedSKU(mapSkuToQuantity, 'Y',
+                subtractAmountForPackedSKU(mapSkuToQuantity, 'T',
+                    subtractAmountForPackedSKU(mapSkuToQuantity, 'S',
+                        subtractAmountForPackedSKU(mapSkuToQuantity, 'X', totalAmountOfMixedPackable - remaining)))))
 
         for((key, value) in mapSkuToQuantity) {
             when (key) {
@@ -128,5 +126,15 @@ object CheckoutSolution {
             (amount / packSize) * packPrice to amount - (amount / packSize) * packSize
         else
             0 to amount
+    }
+
+    private fun subtractAmountForPackedSKU(shoppingCart: MutableMap<Char, Int>, char: Char, amountPacked: Int): Int {
+        val amount = shoppingCart[char] ?: 0;
+        if(amount > 0) {
+            val valueToSubtract = min(amount, amountPacked)
+            shoppingCart['X'] = amount - valueToSubtract
+            return amountPacked - valueToSubtract
+        }
+        return amountPacked
     }
 }
