@@ -45,6 +45,71 @@ object CheckoutSolution {
                     val amountOfTripleFs = value / 3
                     finalPrice += 10 * (value - amountOfTripleFs)
                 }
+                'G' -> finalPrice += value * 20
+                'H' -> {
+                    var amountOfH = value
+
+                    if(amountOfH / 10 > 0) {
+                        finalPrice += (amountOfH / 10) * 80
+                        amountOfH -= (amountOfH / 10) * 10
+                    }
+
+                    if(amountOfH / 5 > 0) {
+                        finalPrice += (amountOfH / 5) * 45
+                        amountOfH -= (amountOfH / 5) * 5
+                    }
+
+                    finalPrice += amountOfH * 10
+                }
+                'I' -> finalPrice += value * 35
+                'J' -> finalPrice += value * 60
+                'K' -> finalPrice += (value / 2) * 150 + (value % 2) * 80
+                'L' -> finalPrice += value * 90
+                'M' -> {
+                    val amountOfN = mapSkuToQuantity['N']
+                    val amountOfFreeMFromN = if(amountOfN == null) 0 else amountOfN / 3
+                    val remainingM = value - amountOfFreeMFromN
+
+                    if(remainingM > 0)
+                        finalPrice += remainingM * 15
+                }
+                'N' -> finalPrice += value * 40
+                'O' -> finalPrice += value * 10
+                'P' -> finalPrice += (value / 5) * 200 + (value % 5) * 50
+                'Q' -> {
+                    val amountOfR = mapSkuToQuantity['R']
+                    val amountOfFreeQFromR = if(amountOfR == null) 0 else amountOfR / 3
+                    val remainingQ = value - amountOfFreeQFromR
+
+                    if(remainingQ > 0)
+                        finalPrice += (remainingQ / 3) * 80 + (remainingQ % 3) * 30
+                }
+                'R' -> finalPrice += value * 50
+                'S' -> finalPrice += value * 30
+                'T' -> finalPrice += value * 20
+                'U' -> {
+                    val amountOfTripleUs = value / 3
+                    finalPrice += 40 * (value - amountOfTripleUs)
+                }
+                'V' -> {
+                    var amountOfV = value
+
+                    if(amountOfV / 3 > 0) {
+                        finalPrice += (amountOfV / 3) * 130
+                        amountOfV -= (amountOfV / 3) * 3
+                    }
+
+                    if(amountOfV / 2 > 0) {
+                        finalPrice += (amountOfV / 2) * 90
+                        amountOfV -= (amountOfV / 2) * 2
+                    }
+
+                    finalPrice += amountOfV * 50
+                }
+                'W' -> finalPrice += value * 20
+                'X' -> finalPrice += value * 90
+                'Y' -> finalPrice += value * 10
+                'Z' -> finalPrice += value * 50
                 else -> {
                     finalPrice = -1
                     break
@@ -53,5 +118,13 @@ object CheckoutSolution {
         }
 
         return finalPrice
+    }
+
+    fun packsOfNElements(amount: Int, packSize: Int, packPrice: Int): Int {
+        return if(amount / packSize > 0)
+            amount = (amount / packSize) * packSize
+            return (amount / packSize) * packPrice
+        else
+            0 to amount
     }
 }
