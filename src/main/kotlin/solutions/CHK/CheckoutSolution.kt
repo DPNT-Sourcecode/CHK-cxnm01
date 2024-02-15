@@ -16,19 +16,13 @@ object CheckoutSolution {
         for((key, value) in mapSkuToQuantity) {
             when (key) {
                 'A' -> {
-                    var amountOfA = value
+                    val (pricePack4, remainingPack5) = packsOfNElements(value, 5, 200)
+                    finalPrice += pricePack4
 
-                    if(amountOfA / 5 > 0) {
-                        finalPrice += (amountOfA / 5) * 200
-                        amountOfA -= (amountOfA / 5) * 5
-                    }
+                    val (pricePack3, remainingPack3) = packsOfNElements(remainingPack5, 3, 130)
+                    finalPrice += pricePack3
 
-                    if(amountOfA / 3 > 0) {
-                        finalPrice += (amountOfA / 3) * 130
-                        amountOfA -= (amountOfA / 3) * 3
-                    }
-
-                    finalPrice += amountOfA * 50
+                    finalPrice += remainingPack3 * 50
                 }
                 'B' -> {
                     val amountOfE = mapSkuToQuantity['E']
@@ -120,10 +114,9 @@ object CheckoutSolution {
         return finalPrice
     }
 
-    fun packsOfNElements(amount: Int, packSize: Int, packPrice: Int): Int {
+    fun packsOfNElements(amount: Int, packSize: Int, packPrice: Int): Pair<Int, Int> {
         return if(amount / packSize > 0)
-            amount = (amount / packSize) * packSize
-            return (amount / packSize) * packPrice
+            (amount / packSize) * packPrice to (amount / packSize) * packSize
         else
             0 to amount
     }
