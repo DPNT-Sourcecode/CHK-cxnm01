@@ -51,4 +51,3 @@ object CheckoutSolution {
         return finalPrice
     }
 }
-

@@ -64,6 +64,16 @@ class CheckoutSolutionTest {
     fun `Buy eight A`() {
         Assertions.assertEquals(330, CheckoutSolution.checkout("AAAAAAAA"))
     }
+
+    @Test
+    fun `Buy nine A`() {
+        Assertions.assertEquals(380, CheckoutSolution.checkout("AAAAAAAAA"))
+    }
+
+    @Test
+    fun `Buy eight A, two E and two B`() {
+        Assertions.assertEquals(455, CheckoutSolution.checkout("AAAAAEEBAAABB"))
+    }
 }
 
 /*
