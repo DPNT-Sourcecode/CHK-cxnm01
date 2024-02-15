@@ -2,7 +2,6 @@ package solutions.CHK
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import solutions.SUM.SumSolution
 
 class CheckoutSolutionTest {
 
