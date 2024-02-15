@@ -23,15 +23,15 @@ object CheckoutSolution {
         val amountOfZ = mapSkuToQuantity['Z'] ?: 0
 
         val totalAmountOfMixedPackable = amountOfS + amountOfT + amountOfX + amountOfY + amountOfZ
-        val (price, remaining) = packsOfNElements(totalAmountOfMixedPackable, 3,  45)
+        var (price, remaining) = packsOfNElements(totalAmountOfMixedPackable, 3,  45)
         finalPrice += price
 
-        subtractAmountForPackedSKU(mapSkuToQuantity, 'Z',
-            subtractAmountForPackedSKU(mapSkuToQuantity, 'Y',
-                subtractAmountForPackedSKU(mapSkuToQuantity, 'T',
-                    subtractAmountForPackedSKU(mapSkuToQuantity, 'S',
-                        subtractAmountForPackedSKU(mapSkuToQuantity, 'X', totalAmountOfMixedPackable - remaining)))))
-
+        remaining = subtractAmountForPackedSKU(mapSkuToQuantity, 'Z', totalAmountOfMixedPackable - remaining)
+        remaining = subtractAmountForPackedSKU(mapSkuToQuantity, 'S', remaining)
+        remaining = subtractAmountForPackedSKU(mapSkuToQuantity, 'T', remaining)
+        remaining = subtractAmountForPackedSKU(mapSkuToQuantity, 'Y', remaining)
+        subtractAmountForPackedSKU(mapSkuToQuantity, 'X', remaining)
+        
         for((key, value) in mapSkuToQuantity) {
             when (key) {
                 'A' -> {
@@ -70,7 +70,7 @@ object CheckoutSolution {
                 }
                 'I' -> finalPrice += value * 35
                 'J' -> finalPrice += value * 60
-                'K' -> finalPrice += (value / 2) * 150 + (value % 2) * 80
+                'K' -> finalPrice += (value / 2) * 120 + (value % 2) * 70
                 'L' -> finalPrice += value * 90
                 'M' -> {
                     val amountOfN = mapSkuToQuantity['N']
@@ -92,7 +92,7 @@ object CheckoutSolution {
                         finalPrice += (remainingQ / 3) * 80 + (remainingQ % 3) * 30
                 }
                 'R' -> finalPrice += value * 50
-                'S' -> finalPrice += value * 30
+                'S' -> finalPrice += value * 20
                 'T' -> finalPrice += value * 20
                 'U' -> {
                     val amountOfTripleUs = value / 4
@@ -108,9 +108,9 @@ object CheckoutSolution {
                     finalPrice += remainingPack2 * 50
                 }
                 'W' -> finalPrice += value * 20
-                'X' -> finalPrice += value * 90
-                'Y' -> finalPrice += value * 10
-                'Z' -> finalPrice += value * 50
+                'X' -> finalPrice += value * 17
+                'Y' -> finalPrice += value * 20
+                'Z' -> finalPrice += value * 21
                 else -> {
                     finalPrice = -1
                     break
