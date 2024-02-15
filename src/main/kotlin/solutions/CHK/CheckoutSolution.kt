@@ -35,7 +35,7 @@ object CheckoutSolution {
                     val amountOfFreeBFromE = if(amountOfE == null) 0 else amountOfE / 2
                     val remainingB = value - amountOfFreeBFromE
 
-                    if(amountOfE != null && remainingB > 0)
+                    if(amountOfFreeBFromE != null && remainingB > 0)
                         finalPrice += (remainingB / 2) * 45 + (remainingB % 2) * 30
                 }
                 'C' -> finalPrice += 20 * value

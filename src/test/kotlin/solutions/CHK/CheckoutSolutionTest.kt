@@ -49,4 +49,9 @@ class CheckoutSolutionTest {
     fun `Buy three As, four Es and two B`() {
         Assertions.assertEquals(290, CheckoutSolution.checkout("AEEEAEBBA"))
     }
+
+    @Test
+    fun `Buy one B`() {
+        Assertions.assertEquals(30, CheckoutSolution.checkout("B"))
+    }
 }
