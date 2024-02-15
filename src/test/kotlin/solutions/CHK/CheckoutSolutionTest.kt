@@ -46,7 +46,7 @@ class CheckoutSolutionTest {
     }
 
     @Test
-    fun `Buy three As, four Es and two B`() {
+    fun `Buy three As, four Es and two Bs`() {
         Assertions.assertEquals(290, CheckoutSolution.checkout("AEEEAEBBA"))
     }
 
@@ -56,32 +56,42 @@ class CheckoutSolutionTest {
     }
 
     @Test
-    fun `Buy four A`() {
+    fun `Buy four As`() {
         Assertions.assertEquals(180, CheckoutSolution.checkout("AAAA"))
     }
 
     @Test
-    fun `Buy eight A`() {
+    fun `Buy eight As`() {
         Assertions.assertEquals(330, CheckoutSolution.checkout("AAAAAAAA"))
     }
 
     @Test
-    fun `Buy nine A`() {
+    fun `Buy nine As`() {
         Assertions.assertEquals(380, CheckoutSolution.checkout("AAAAAAAAA"))
     }
 
     @Test
-    fun `Buy eight A, two E and two B`() {
+    fun `Buy eight As, two Es and two Bs`() {
         Assertions.assertEquals(455, CheckoutSolution.checkout("AAAAAEEBAAABB"))
     }
-}
 
-/*
-Result is: FAILED
-Some requests have failed (4/40). Here are some of them:
- - {"method":"checkout","params":["AAAAAAAA"],"id":"CHK_R2_020"}, expected: 330, got: 130
- - {"method":"checkout","params":["AAAAAAAAA"],"id":"CHK_R2_021"}, expected: 380, got: 180
- - {"method":"checkout","params":["AAAAAEEBAAABB"],"id":"CHK_R2_040"}, expected: 455, got: 255
-You have received a penalty of: 10 min
-The round will restart now
-*/
+    @Test
+    fun `Buy three Fs`() {
+        Assertions.assertEquals(20, CheckoutSolution.checkout("FFF"))
+    }
+
+    @Test
+    fun `Buy two Fs`() {
+        Assertions.assertEquals(20, CheckoutSolution.checkout("FF"))
+    }
+
+    @Test
+    fun `Buy six Fs`() {
+        Assertions.assertEquals(40, CheckoutSolution.checkout("FFFFFF"))
+    }
+
+    @Test
+    fun `Buy seven Fs`() {
+        Assertions.assertEquals(50, CheckoutSolution.checkout("FFFFFFF"))
+    }
+}

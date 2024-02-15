@@ -35,16 +35,15 @@ object CheckoutSolution {
                     val amountOfFreeBFromE = if(amountOfE == null) 0 else amountOfE / 2
                     val remainingB = value - amountOfFreeBFromE
 
-                    if(amountOfFreeBFromE != null && remainingB > 0)
+                    if(remainingB > 0)
                         finalPrice += (remainingB / 2) * 45 + (remainingB % 2) * 30
                 }
                 'C' -> finalPrice += 20 * value
                 'D' -> finalPrice += 15 * value
                 'E' -> finalPrice += 40 * value
                 'F' -> {
-                    if(value / 3 > 0) {
-                        finalPrice +=
-                    }
+                    val amountOfTripleFs = value / 3
+                    finalPrice += 10 * (value - amountOfTripleFs)
                 }
                 else -> {
                     finalPrice = -1
